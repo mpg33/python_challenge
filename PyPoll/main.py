@@ -2,43 +2,92 @@
 import os
 import csv
 
-csvpath = os.path.join('..', 'Py_Resources', 'election_data.csv')
+csvpath = os.path.join('..'/'PyPoll'/'election_data.csv')
 
-voter_List=[]
+
 candidate_List=[]
 county_List=[]
-votes_TotalCast = 0
+Total_VotesCast = 0
 candidate_TotalCast = [0,0,0,0]
 win_Percent = []
-election_Winner = 0
-election_Name =""
+winner_election = 0
+election_Name = ""
 
 
 with open (csvpath, newline= "") as handler:
     pollData = csv.reader(handler)
-    #lines = handler.read()
-    #print(lines)
-	
+    for row in pollData:
+		for row in pollData:
+			Total_VotesCast = Total_VotesCast + 1
+			candidate_List.append(row[2])
+			candidate_List = list(set(candidate_List))
+
+with open (csvpath, newline = "") as handler:
+	pollData = csv.reader(handler)
 	for row in pollData:
-	print(type(row))
-		continue
-    
-#def Election_Results(election_dataset):
+		for row in pollData:
+			picked = row[2]
+			picked = candidate_List.index(picked) 
+			candidate_TotalCast[picked] += 1
 
-#total number of votes cast
+for row in candidateTotalCast:
+	win_Percent.append(round(row/Total_VotesCast,4))
+	#print(winPercent)
 
-#complete list of candidates who recieved votes
+for x in range(len(candidate_TotalCast)):
+	print(str(candidate_List[x])+": "+str(win_Percent[x])+" ("+str(candidate_TotalCast[x])+")")
+	if winner_election < candidate_TotalCast[x]:
+		winner_election = candidate_TotalCast[x]
+winner_election = candidate_TotalCast.index(winner_election)
+	
 
-#percent of votes each candidate won
+finalResult = zip(candidate_List,win_Percent,candidate_TotalCast)
+finalResult = list(finalResult)
 
-#total number of votes candidate won
 
-#winner of election based on popular vote
 
-print("Election Results") #,"/n")
-print("--------------------")
-print(f'Total Votes: {votes_TotalCast}')
-print("--------------------")
-print(f'{candidate_List[0]}: ({win_Percent} + {candidate_TotalCast})')#in range(4)^^^^
-print("--------------------")
-print(f'Winner: {election_Winner}')
+#print("Election Results") #,"/n")
+#print("--------------------")
+#print(f'Total Votes: {Total_VotesCast}')
+#print("--------------------")
+#print(f'{candidate_List[0]}: ({win_Percent} + {candidate_TotalCast})')#in range(4)^^^^
+#print("--------------------")
+#print(f'Winner: {winner_election}')
+
+
+
+
+
+
+#output_path = os.path.join("..", "PyBank", "PyBank.txt")
+
+#file = open(output_path, 'w')
+
+#file.write("Financial_Analysis") #,"/n")
+#file.write("\n")
+#file.write(f'Total Months: {Number_months}')
+#file.write("\n")
+#file.write(f'Total: $ {Start_number}')
+#file.write("\n")
+#file.write(f'Greatest Increase in Profits:  {greatest_Increase[0]} + (${greatest_Increase[1]})')
+#file.write("\n")
+#file.write(f'Greatest Decrease in Profits:  {greatest_Decrease[0]} + (${greatest_Decrease[1]})')
+
+#file.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
